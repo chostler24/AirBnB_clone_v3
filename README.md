@@ -159,6 +159,7 @@ Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://tw
 
 ## Other contributors
 Connor Hostler - [Github](https://github.com/chostler24)
+
 Connor Kleine - [Github](https://github.com/conkobar)
 
 Second part of Airbnb: Joann Vuong
