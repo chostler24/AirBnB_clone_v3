@@ -2,7 +2,7 @@
 """Flask initialization"""
 from models import storage
 from api.v1.views import app_views
-from flask import Flask
+from flask import Flask, jsonify
 from os import environ
 
 
@@ -14,6 +14,13 @@ app.register_blueprint(app_views)
 def teardown(self):
     """calls close method from storage"""
     storage.close()
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return jsonify({
+        "error": "Not found"
+    })
 
 
 if __name__ == "__main__":
