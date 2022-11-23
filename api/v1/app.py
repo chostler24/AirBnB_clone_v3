@@ -18,6 +18,7 @@ def teardown(self):
 
 @app.errorhandler(404)
 def page_not_found(e):
+    """handles 404 errors"""
     return make_response(jsonify({
         "error": "Not found"
     }), 404)
