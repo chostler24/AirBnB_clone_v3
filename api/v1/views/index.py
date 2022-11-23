@@ -14,7 +14,7 @@ def status():
     )
 
 
-@app_views.route('/api/v1/stats')
+@app_views.route('/stats')
 def stats():
     """creates endpoint that retrieves # of objs of given type"""
     return jsonify({
