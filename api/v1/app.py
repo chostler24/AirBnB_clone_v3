@@ -2,8 +2,8 @@
 """Flask initialization"""
 from models import storage
 from api.v1.views import app_views
-from flask import Flask, jsonify
 from os import environ
+from flask import Flask, jsonify, make_response
 
 
 app = Flask(__name__)
@@ -18,9 +18,9 @@ def teardown(self):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return jsonify({
+    return make_response(jsonify({
         "error": "Not found"
-    })
+    }), 404)
 
 
 if __name__ == "__main__":
