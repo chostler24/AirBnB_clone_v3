@@ -8,7 +8,7 @@ from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 
 
-@app_views.route('/states/', methods=['GET'])
+@app_views.route('/states', methods=['GET'])
 def state_list():
     """list all state objects"""
     return jsonify([
@@ -36,7 +36,7 @@ def state_delete(state_id):
     abort(404)
 
 
-@app_views.route('/states/', methods=['POST'])
+@app_views.route('/states', methods=['POST'])
 def state_create():
     """creates a State"""
     if request.json():
