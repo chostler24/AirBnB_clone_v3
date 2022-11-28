@@ -64,7 +64,7 @@ def state_update(state_id):
             abort(404)
         for key, val in req.items():
             if key not in ['id', 'created_at', 'updated_at']:
-                check_state[key] = val
+                setattr(check_state, key, val)
         storage.save()
         return make_response(jsonify(check_state.to_dict()), 200)
     return make_response(jsonify({
