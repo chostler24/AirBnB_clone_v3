@@ -11,9 +11,9 @@ from flask import jsonify, abort, make_response, request
 @app_views.route('/states', methods=['GET'])
 def state_list():
     """list all state objects"""
-    allstate = storage.all(State)
-    stately = [s.to_dict() for s in allstate.values()]
-    return jsonify(stately)
+    return jsonify(
+        [st.to_dict() for st in storage.all(State).values()]
+    )
 
 
 @app_views.route('/states/<state_id>', methods=['GET'])
@@ -48,10 +48,10 @@ def state_create():
             return make_response(jsonify(new.to_dict()), 201)
         return make_response(jsonify({
             'error': 'Missing name'
-            }), 400)
+        }), 400)
     return make_response(jsonify({
         "error": "Not a JSON"
-        }), 400)
+    }), 400)
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'])
@@ -69,4 +69,4 @@ def state_update(state_id):
         return make_response(jsonify(check_state.to_dict()), 200)
     return make_response(jsonify({
         "error": "Not a JSON"
-        }), 400)
+    }), 400)
