@@ -19,6 +19,7 @@ import os
 import pep8
 import unittest
 DBStorage = db_storage.DBStorage
+storage = models.storage
 classes = {"Amenity": Amenity, "City": City, "Place": Place,
            "Review": Review, "State": State, "User": User}
 
@@ -78,11 +79,35 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_no_class(self):
         """Test that all returns all rows when no class is passed"""
+        pass
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_new(self):
         """test that new adds an object to the database"""
+        pass
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
+        pass
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get(self):
+        """test get method for db storage"""
+        inst_1 = State(name="FizzBuzz")
+        inst_1.save()
+        inst_2 = storage.get(State, inst_1.id)
+        inst_3 = storage.get(State, "bad_id")
+        self.assertEqual(inst_1, inst_2)
+        self.assertIsNone(inst_3)
+
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count(self):
+        """test count method for db storage"""
+        count_user = storage.count(User)
+        count_total = storage.count()
+        user_new = User(email="fizz@buzz.net", password="FizzBuzz")
+        user_new.save()
+        self.assertEqual(storage.count(User), count_user + 1)
+        self.assertEqual(storage.count(), count_total + 1)
