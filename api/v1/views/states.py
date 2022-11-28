@@ -15,6 +15,7 @@ def state_list():
         state.to_dict() for state in storage.all(State).values()
     ])
 
+
 @app_views.route('/states/<state_id>', methods=['GET'])
 def state_get(state_id):
     """retrieves state object"""
@@ -72,4 +73,4 @@ def state_update(state_id):
         jsonify({
             "error": "Not a JSON"
         }), 400
-)
+    )
