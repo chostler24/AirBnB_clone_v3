@@ -6,7 +6,7 @@ from models import storage
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
-from models.places import Place
+from models.place import Place
 from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from sqlalchemy.exc import IntegrityError
@@ -74,6 +74,7 @@ def place_create(city_id):
         ), 400)
     except IntegrityError:
         abort(404)
+
 
 @app_views.route('/places/<place_id>', methods=['PUT'])
 def place_update(place_id):
