@@ -4,9 +4,12 @@ from models import storage
 from api.v1.views import app_views
 from os import environ
 from flask import Flask, jsonify, make_response
+from logging import FileHandler, WARNING
 
 
 app = Flask(__name__)
+file_handler = FileHandler('errorlog.txt')
+file_handler.setLevel(WARNING)
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
 
