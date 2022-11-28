@@ -46,16 +46,14 @@ def user_create():
     """creates a city object"""
     req = request.get_json()
     if req is not None:
-        if 'email' not in req.keys() and req['email'] is None:
+        if 'email' not in req.keys() or req['email'] is None:
             return make_response(jsonify({
                 'error': 'Missing email'
-                }), 400
-            )
-        if 'password' not in req.keys() and req['password'] is None:
+                }), 400)
+        if 'password' not in req.keys() or req['password'] is None:
             return make_response(jsonify({
                 'error': 'Missing password'
-                }), 400
-            )
+                }), 400)
         new = User(**req)
         new.save()
         return make_response(jsonify(new.to_dict()), 201)
